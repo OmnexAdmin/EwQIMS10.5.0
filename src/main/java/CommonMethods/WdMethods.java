@@ -180,5 +180,22 @@ public interface WdMethods {
     public void closeAllBrowsers();
     
     public void switchToDefaultFrame();
+    
+    public void scrollDownbyVisibilityofElement(WebElement ele);
+      
+    /**
+     * This method will scroll down to the webpage to get the visibility of the element
+     */
+    
+    public void moveToElement(WebElement ele, String text);
+    
+    /**
+     * This method will move the focus to the targeted element
+     */
+    public void validateCheckbox(WebElement ele, String text);
+    
+    /**
+     * This method will  validate whether the checkbox is checked or not checked
+     */
 
 }

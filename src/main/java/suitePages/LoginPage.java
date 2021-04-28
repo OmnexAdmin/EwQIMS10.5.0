@@ -20,11 +20,9 @@ public class LoginPage extends ProjectMethods {
 	@FindBy(how = How.ID, using = "txtPassword")
 	private WebElement elePassWord;
 
-	@FindBy(how = How.XPATH, using = "//input[@value='Login']")
-	private WebElement eleLogin;
 
-	// @FindBy(how=How.XPATH,using="//button[text()='Login']")
-	// private WebElement eleLogin;
+	@FindBy(how=How.XPATH,using="//button[text()='Login']")
+	private WebElement eleLogin;
 
 	@FindBy(how = How.ID, using = "divWaring")
 	private WebElement eleErrorMsg;

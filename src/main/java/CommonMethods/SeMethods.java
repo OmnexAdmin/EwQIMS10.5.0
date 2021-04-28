@@ -27,6 +27,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -48,6 +49,7 @@ import main.java.Utilities.Reporter;
 public class SeMethods extends Reporter implements WdMethods {
 
     Logger logger = Logger.getLogger("SeMethods");
+    JavascriptExecutor js = (JavascriptExecutor) driver;
 
     // PropertyConfigurator.configure("Log4j.properties");
 
@@ -61,7 +63,7 @@ public class SeMethods extends Reporter implements WdMethods {
         Properties prop = new Properties();
         try {
             String path = System.getProperty("user.dir");
-            // System.out.println(path);
+          
             prop.load(new FileInputStream(new File(path + "\\data\\config.properties")));
 
             // prop.load(new FileInputStream(new
@@ -170,7 +172,7 @@ public class SeMethods extends Reporter implements WdMethods {
     public void click(WebElement ele, String text) {
         // String text = "";
         try {
-            WebDriverWait wait = new WebDriverWait(driver, 50);
+            WebDriverWait wait = new WebDriverWait(driver, 70);
             wait.until(ExpectedConditions.visibilityOf(ele));
             wait.until(ExpectedConditions.elementToBeClickable(ele));
             // text = ele.getText();
@@ -366,19 +368,65 @@ public class SeMethods extends Reporter implements WdMethods {
         }
     }
 
-    public void verifySelected(WebElement ele) {
-        try {
-            if (ele.isSelected()) {
+    public void verifySelected(WebElement ele, String text) {
+    	try {
 
-                reportStep("The element " + ele + " is selected", "PASS");
-            } else {
-                reportStep("The element " + ele + " is not selected", "FAIL");
-            }
-        } catch (WebDriverException e) {
-            reportStep("WebDriverException : " + e.getMessage(), "FAIL");
-        }
+    		if (ele.isSelected()) {
+    			logger.info("The element " + text + "is enabled/selected/checked");
+    			reportStep("The element " + text + " is selected", "PASS");
+    			 
+    		} else {
+    			logger.info("The element " + text + "is disabled/not selected/not checked");
+    			reportStep("The element " + text + " is not selected", "FAIL");
+    		}
+    	} catch (WebDriverException e) {
+    		reportStep("WebDriverException : " + e.getMessage(), "FAIL");
+    	}
     }
+    
+    
+    
+    @Override
+	public void verifySelected(WebElement ele) {
+		// TODO Auto-generated method stub
+    	try {
 
+    		if (ele.isSelected()) {
+    			logger.info("The element " + ele + "is enabled/selected/checked");
+    			reportStep("The element " + ele + " is selected", "PASS");
+    			 
+    		} else {
+    			logger.info("The element " + ele + "is disabled/not selected/not checked");
+    			reportStep("The element " + ele + " is not selected", "FAIL");
+    		}
+    	} catch (WebDriverException e) {
+    		reportStep("WebDriverException : " + e.getMessage(), "FAIL");
+    	}
+    }
+    
+    
+    public void validateCheckbox(WebElement ele, String text) {
+    	try {
+    		
+    		String checkedValue=ele.getAttribute("checked");
+    		
+    		System.out.println("the checkbox value is:"+checkedValue);
+    		
+    		if(checkedValue=="true") {
+    			logger.info("The element " + text + "is enabled/selected/checked");
+    			reportStep("The element " + text + " is selected", "PASS");
+    			
+    		}
+    		 else {
+     			logger.info("The element " + text + "is disabled/not selected/not checked");
+     			reportStep("The element " + text + " is not selected", "FAIL");
+     		}
+			
+		} catch (WebDriverException e) {
+    		reportStep("WebDriverException : " + e.getMessage(), "FAIL");
+    }
+    	}
+    
     public void verifyDisplayed(WebElement ele, String elementName) {
         try {
             if (ele.isDisplayed()) {
@@ -412,15 +460,15 @@ public class SeMethods extends Reporter implements WdMethods {
         return bReturn;
     }
 
-    public void verifyEnabled(WebElement ele) {
+    public void verifyEnabled(WebElement ele, String text) {
         try {
             if (ele.isEnabled()) {
-                reportStep("The element " + ele + " is enabled", "PASS");
-                logger.info("The radio button" + ele + " is enabled ");
+                reportStep("The element " + text + " is enabled", "PASS");
+                logger.info("The radio button" + text + " is enabled ");
 
             } else {
-                reportStep("The element " + ele + " is disabled", "FAIL");
-                logger.debug("The radio button" + ele + " is disabled ");
+                reportStep("The element " + text + " is disabled", "FAIL");
+                logger.debug("The radio button" + text + " is disabled ");
             }
         } catch (WebDriverException e) {
             reportStep("WebDriverException : " + e.getMessage(), "FAIL");
@@ -475,15 +523,19 @@ public class SeMethods extends Reporter implements WdMethods {
     public void acceptAlert() {
         String text = "";
         try {
+        	
             Alert alert = driver.switchTo().alert();
             text = alert.getText();
             alert.accept();
             reportStep("The alert " + text + " is accepted.", "PASS");
+            
         } catch (NoAlertPresentException e) {
             reportStep("There is no alert present.", "FAIL");
         } catch (WebDriverException e) {
             reportStep("WebDriverException : " + e.getMessage(), "FAIL");
-        }
+        } 
+        
+        
     }
 
     public void dismissAlert() {
@@ -539,6 +591,20 @@ public class SeMethods extends Reporter implements WdMethods {
         }
     }
 
+    
+
+	public void moveToElement(WebElement ele, String text) {
+		try {
+		Actions action = new Actions(driver);
+			action.moveToElement(ele).build().perform();
+			 logger.info("Mouse pointer is moved to the element:" + text);
+	            reportStep("Mouse pointer is moved to the element:"+text, "PASS");
+		
+	}catch (WebDriverException e) {
+		logger.debug("Mouse pointer is moved to the element:" + text);
+        reportStep("WebDriverException : " + e.getMessage(), "FAIL");
+	}
+	}
     public void explicitWait(WebElement ele) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 20);
@@ -558,8 +624,11 @@ public class SeMethods extends Reporter implements WdMethods {
             StringSelection stringSelection = new StringSelection(filename);
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
             // native key strokes for CTRL, V and ENTER keys
+            
+            
             Robot robot = new Robot();
             robot.keyPress(KeyEvent.VK_CONTROL);
+       
             Thread.sleep(1000);
             robot.keyPress(KeyEvent.VK_V);
             robot.keyRelease(KeyEvent.VK_V);
@@ -579,14 +648,22 @@ public class SeMethods extends Reporter implements WdMethods {
         long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L;
         try {
             String path = System.getProperty("user.dir");
-            System.out.println(path);
+            
             FileUtils.copyFile(driver.getScreenshotAs(OutputType.FILE), new File
             		
             	(path + "//reports//images//" + number + ".jpg"));
+			/*
+			 * logger.info("Snapshot taken"); reportStep("Snapshot taken", "PASS");
+			 */
 
         } catch (WebDriverException e) {
-            System.out.println("The browser has been closed.");
+			/*
+			 * // logger.info("Snapshot could not be taken"); //
+			 * reportStep("Snapshot could not be taken", "FAIL");
+			 */            System.out.println("The browser has been closed.");
         } catch (IOException e) {
+        	 logger.info("Snapshot could not be taken"); 
+             reportStep("Snapshot could not be taken", "FAIL");
             System.out.println("The snapshot could not be taken");
         }
         return number;
@@ -604,11 +681,40 @@ public class SeMethods extends Reporter implements WdMethods {
     }
 
     public void scrollDownthePage() {
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        // This will scroll the web page till end.
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+try {
+	
+	//  Javascript method scrollTo() scroll till the end of the page .
+	//"document.body.scrollHeight" returns the complete height of the body i.e web page.
+    js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    logger.info("Scrolled down to the webpage");
+    reportStep("Scrolled down to the webpage", "PASS");
+	
+} catch (Exception e) {
+	// TODO: handle exception
+	logger.debug("Cant able to perform scroll");
+    reportStep("Cant able to perform scroll", "FAIL");
+}
+       
+        
     }
+    
+	public void scrollDownbyVisibilityofElement(WebElement ele) {
+		try {
+			//Javascript method scrollIntoView() scrolls the page until the mentioned element is in full view
+			//"arguments[0]" means first index of page starting at 0.
+			js.executeScript("arguments[0].scrollIntoView();", ele);
+			 logger.info("Scrolled down to the visibility of the element in a webpage");
+			    reportStep("Scrolled down to the visibility of the element in a webpage", "PASS");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.debug("Cant able to perform scroll");
+		    reportStep("Cant able to perform scroll", "FAIL");
+		}
+		
+	}
+
+    
 
     public void switchToDefaultFrame() {
 
@@ -828,5 +934,14 @@ public class SeMethods extends Reporter implements WdMethods {
         PropertyConfigurator.configure("Log4j.properties");
 
     }
+
+	
+
+	
+
+
+
+	
+
 
 }

@@ -29,7 +29,7 @@ import main.java.Utilities.ExcelDataProvider;
 		public void beforeTest(){
 		}
 		
-	@BeforeMethod 
+	   @BeforeMethod 
 		public void beforeMethod(){
 			//test = startTestCase(testCaseName, testDescription);
 		test.assignCategory(category);

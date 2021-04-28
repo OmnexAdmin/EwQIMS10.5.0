@@ -17,10 +17,10 @@ import main.java.docProPages.DocProAdminHomePage;
 
 public class HomePage extends ProjectMethods {
 
-	@FindBy(how = How.XPATH, using = "(//a[text()='Users'])[1]")
+	@FindBy(how = How.XPATH, using = "(//span[text()='Users']/parent::a)[1]")
 	private WebElement eleClickOnUsersTab;
 
-	@FindBy(how = How.XPATH, using = "//img[@title='Create Users']")
+	@FindBy(how = How.XPATH, using = "(//span[text()='Users']/parent::a)[2]")
 	private WebElement eleClickOnUsersMenu;
 
 	@FindBy(how = How.XPATH, using = "//img[@title='Levels']")
@@ -63,6 +63,7 @@ public class HomePage extends ProjectMethods {
 	@FindBy(xpath="//img[@class='round_img']") WebElement eleclickOnUserProfileDropdown;
 	
 	@FindBy(xpath="//a[@id='logout']") WebElement eleclickOnLogOut;
+
 	
 	public HomePage(RemoteWebDriver driver, ExtentTest test) {
 		this.driver = driver;
@@ -87,6 +88,7 @@ public class HomePage extends ProjectMethods {
 	public UserCreationPage clickOnUsersMenu() throws Throwable {
 
 		click(eleClickOnUsersMenu, "User menu");
+		
 		// Thread.sleep(2000);
 		return new UserCreationPage(driver, test);
 	}

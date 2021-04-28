@@ -203,7 +203,7 @@ public class Actions extends ProjectMethods {
 		
 		switchToFrame(eleSwitchToApproveFrame);
 		Thread.sleep(5000);
-		verifyEnabled(eleCheckApproveRadioButton);
+		verifyEnabled(eleCheckApproveRadioButton,"Approve radio button");
 		Thread.sleep(5000);
 
 		VerifyIsDisplayed(eleClickOnReset2ndPwdLink, "Reset 2nd Password Link");

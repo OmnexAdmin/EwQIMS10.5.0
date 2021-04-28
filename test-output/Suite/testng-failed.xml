@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test name="Test(failed)" parallel="methods">
+    <classes>
+      <class name="practice.seleniumBrushup">
+        <methods>
+          <include name="methodE"/>
+          <include name="verifyGoogle"/>
+          <include name="methodC"/>
+          <include name="verifyTitleFB"/>
+          <include name="methodB"/>
+          <include name="methodA"/>
+          <include name="setupBrowser"/>
+          <include name="url"/>
+          <include name="methodD"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- practice.seleniumBrushup -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

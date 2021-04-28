@@ -779,8 +779,8 @@ switchToDefaultFrame();
 
 		case "4i.iiW/C Off Work Status":
 
-			verifyEnabled(eleCheckAttachRightsforNewdocCreation);
-			verifyEnabled(eleCheckFullAccessforNewdocAccess);
+			verifyEnabled(eleCheckAttachRightsforNewdocCreation,"");
+			verifyEnabled(eleCheckFullAccessforNewdocAccess,"");
 			click(eleUncheckGroupInheritforNewdocCreation, "Uncheck site inherit for the admin group");
 			click(eleCheckNoAccessforNewdocCreation, "Set No access rights to the folder for view only group");
 			click(eleUncheckGroupInheritforNewdocAccess, "Uncheck  site inherit for admin group");
@@ -800,7 +800,7 @@ switchToDefaultFrame();
             
 		case "5b.Re-Draw Attendance Boundaries Work Instructions":
 		    
-		    verifyEnabled(eleCheckNoAccessforNewdocCreation);
+		    verifyEnabled(eleCheckNoAccessforNewdocCreation,"");
 		    click(eleClickOnFullAccessForDocument, "Full access to the document for sites");
 		    
 		    

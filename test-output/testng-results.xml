@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="24404" started-at="2021-04-09T06:12:02Z" finished-at="2021-04-09T06:12:27Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="24404" started-at="2021-04-09T06:12:02Z" finished-at="2021-04-09T06:12:27Z">
+      <class name="practice.seleniumBrushup">
+        <test-method status="PASS" signature="methodA()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="methodA" is-config="true" duration-ms="13" started-at="2021-04-09T11:42:02Z" finished-at="2021-04-09T11:42:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodA -->
+        <test-method status="PASS" signature="setupBrowser()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="setupBrowser" is-config="true" duration-ms="18394" started-at="2021-04-09T11:42:02Z" finished-at="2021-04-09T11:42:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupBrowser -->
+        <test-method status="PASS" signature="methodX()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="methodX" is-config="true" duration-ms="0" started-at="2021-04-09T11:42:21Z" finished-at="2021-04-09T11:42:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodX -->
+        <test-method status="PASS" signature="methodB()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="methodB" is-config="true" duration-ms="1" started-at="2021-04-09T11:42:21Z" finished-at="2021-04-09T11:42:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodB -->
+        <test-method status="PASS" signature="verifyGoogle()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="verifyGoogle" duration-ms="5439" started-at="2021-04-09T11:42:21Z" finished-at="2021-04-09T11:42:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyGoogle -->
+        <test-method status="PASS" signature="methodC()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="methodC" is-config="true" duration-ms="1" started-at="2021-04-09T11:42:27Z" finished-at="2021-04-09T11:42:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodC -->
+        <test-method status="PASS" signature="methodD()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="methodD" is-config="true" duration-ms="0" started-at="2021-04-09T11:42:27Z" finished-at="2021-04-09T11:42:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodD -->
+        <test-method status="PASS" signature="close()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="close" is-config="true" duration-ms="0" started-at="2021-04-09T11:42:27Z" finished-at="2021-04-09T11:42:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+        <test-method status="PASS" signature="methodE()[pri:0, instance:practice.seleniumBrushup@553f17c]" name="methodE" is-config="true" duration-ms="0" started-at="2021-04-09T11:42:27Z" finished-at="2021-04-09T11:42:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodE -->
+      </class> <!-- practice.seleniumBrushup -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

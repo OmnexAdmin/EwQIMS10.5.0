@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
 
+import main.java.CommonMethods.ProjectMethods;
 import main.java.docProPages.Actions;
 import main.java.docProPages.DocProAdminHomePage;
 import main.java.docProPages.FolderManagement;
@@ -15,7 +16,7 @@ import main.java.suitePages.LoginPage;
 
 
 
-public class s1 extends main.java.CommonMethods.ProjectMethods {
+public class s1 extends ProjectMethods {
 
 	@BeforeClass
 	public void setData() {
@@ -50,7 +51,7 @@ public class s1 extends main.java.CommonMethods.ProjectMethods {
 			throw new SkipException("Run mode set as No");
 		}
 
-		  System.out.println("code execute after if");
+	
 		switch (TestcaseNumber) {
 
          case "TC001":
@@ -77,8 +78,8 @@ public class s1 extends main.java.CommonMethods.ProjectMethods {
 		     new LoginPage(driver, test)
 			.login(userName, passWord)
 			.clickOnUsersTab()
-			.clickOnUsersMenu().
-			addUsers(userCount,code,fName, lName, eMail, uName, pwd, confirmPassword);
+			.clickOnUsersMenu()
+			.addUsers(userCount,code,fName, lName, eMail, uName, pwd, confirmPassword);
 			
 			new HomePage(driver, test)
             .clickOnSetupTab();
